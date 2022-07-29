@@ -27,6 +27,7 @@ Notification Id Test cases
       "56770ea0-d385-4b17-a0b4-23a85c0c5b1a" => sending
       "66770ea0-d385-4b17-a0b4-23a85c0c5b1a" => pending
       "76770ea0-d385-4b17-a0b4-23a85c0c5b1a" => sent
+      "86770ea0-d385-4b17-a0b4-23a85c0c5b1a" => not found
       Any                                    => delivered
 ```
 
