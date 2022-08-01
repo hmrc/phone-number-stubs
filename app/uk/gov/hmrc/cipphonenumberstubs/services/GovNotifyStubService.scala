@@ -19,32 +19,34 @@ package uk.gov.hmrc.cipphonenumberstubs.services
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.Result
-import play.api.mvc.Results.{Created, Ok}
-import uk.gov.hmrc.cipphonenumberstubs.services.responses.{NotificationResponse, VerificationResponses}
+import play.api.mvc.Results.{Created, NotFound, Ok}
+import uk.gov.hmrc.cipphonenumberstubs.services.responses.{NotificationResponses, VerificationResponses}
+
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton()
-class GovNotifyStubService @Inject() (implicit val executionContext: ExecutionContext) extends Logging {
+class GovNotifyStubService @Inject()(implicit val executionContext: ExecutionContext) extends Logging {
 
-  def sms: Future[Result]  = Future {
+  def sms: Future[Result] = Future {
     Created(Json.parse(VerificationResponses.notificationResponse))
   }
 
   def status(notificationId: String): Future[Result] = Future {
-      Ok(Json.parse(parseNotificationResponse(notificationId)))
+    parseNotificationResponse(notificationId)
   }
 
-  def parseNotificationResponse(notificationId: String) = {
+  def parseNotificationResponse(notificationId: String): Result = {
     notificationId match {
-      case "16770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.permanentFailure
-      case "26770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.technicalFailure
-      case "36770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.temporaryFailure
-      case "46770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.created
-      case "56770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.sending
-      case "66770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.pending
-      case "76770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponse.sent
-      case _ => NotificationResponse.delivered
+      case "16770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.permanentFailure)
+      case "26770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.technicalFailure)
+      case "36770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.temporaryFailure)
+      case "46770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.created)
+      case "56770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.sending)
+      case "66770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.pending)
+      case "76770ea0-d385-4b17-a0b4-23a85c0c5b1a" => Ok(NotificationResponses.sent)
+      case "86770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotFound(NotificationResponses.notFound)
+      case _ => Ok(NotificationResponses.delivered)
     }
   }
 }
