@@ -1,0 +1,9 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: cip-mongo-cache-stubs
+    restart: unless-stopped
+    command: mongodb --port 27018
+    ports:
+      - '27018:27017'

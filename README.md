@@ -97,6 +97,11 @@ curl \
     'https://cip-phone-number-stubs.protected.mdtp/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ``` 
 
+##### Using local db
+```
+docker-compose up -d
+```
+
 ### License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").

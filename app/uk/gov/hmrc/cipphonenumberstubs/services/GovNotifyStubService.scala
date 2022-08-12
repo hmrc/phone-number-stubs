@@ -19,17 +19,30 @@ package uk.gov.hmrc.cipphonenumberstubs.services
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.Result
-import play.api.mvc.Results.{Created, NotFound, Ok}
-import uk.gov.hmrc.cipphonenumberstubs.services.responses.{NotificationResponses, VerificationResponses}
+import play.api.mvc.Results.{Created, InternalServerError, NotFound, Ok}
+import uk.gov.hmrc.cipphonenumberstubs.dao.{DatabaseHelper, OtpData}
+import uk.gov.hmrc.cipphonenumberstubs.services.requests.GovNotifySendSmsRequest
+import uk.gov.hmrc.cipphonenumberstubs.services.responses.{GovNotifyStubSendSmsResponse, NotificationResponses}
+import uk.gov.hmrc.play.bootstrap.backend.http.ErrorResponse
 
+import java.util.UUID.randomUUID
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton()
-class GovNotifyStubService @Inject()(implicit val executionContext: ExecutionContext) extends Logging {
+class GovNotifyStubService @Inject()(databaseHelper: DatabaseHelper)(implicit val executionContext: ExecutionContext) extends Logging {
 
-  def sms: Future[Result] = Future {
-    Created(Json.parse(VerificationResponses.notificationResponse))
+  def sms(sendSmsRequest: GovNotifySendSmsRequest): Future[Result] = {
+    val uniqueId = randomUUID().toString
+    databaseHelper.persistOtp(uniqueId, sendSmsRequest.personalisation.passCode) flatMap returnResponse recover {
+      case err =>
+        logger.error(s"Stubs Database operation failed - ${err.getMessage}")
+        InternalServerError(Json.toJson(ErrorResponse(900, "STUBS_DATABASE_OPERATION_FAIL")))
+    }
+  }
+
+  private def returnResponse(otpData: OtpData): Future[Result] = {
+    Future.successful(Created(Json.toJson(GovNotifyStubSendSmsResponse(otpData.notificationId))))
   }
 
   def status(notificationId: String): Future[Result] = Future {
@@ -49,4 +62,5 @@ class GovNotifyStubService @Inject()(implicit val executionContext: ExecutionCon
       case _ => Ok(NotificationResponses.delivered)
     }
   }
+
 }

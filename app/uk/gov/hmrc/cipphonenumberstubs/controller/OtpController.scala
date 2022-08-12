@@ -16,25 +16,24 @@
 
 package uk.gov.hmrc.cipphonenumberstubs.controller
 
-import play.api.libs.json.JsValue
+import play.api.Logging
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.cipphonenumberstubs.services.GovNotifyStubService
-import uk.gov.hmrc.cipphonenumberstubs.services.requests.GovNotifySendSmsRequest
+import uk.gov.hmrc.cipphonenumberstubs.services.OtpService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton()
-class GovNotifyStubController @Inject()(cc: ControllerComponents, service: GovNotifyStubService)
-  extends BackendController(cc) {
+class OtpController @Inject()(cc: ControllerComponents, service: OtpService)
+  extends BackendController(cc) with Logging {
 
-  def sms: Action[JsValue] = Action(parse.json).async { implicit request =>
-    withJsonBody[GovNotifySendSmsRequest] {
-      service.sms
-    }
-  }
-
-  def status(notificationId: String): Action[AnyContent] = Action.async { implicit request =>
-    service.status(notificationId)
+  /*
+  Not a real endpoint
+  Only used by the acceptance tests
+  This is just to help the acceptance tests be automated and know the otp without a manual process
+   */
+  def retrieveOtp(notificationId: String): Action[AnyContent] = Action.async { implicit request =>
+    logger.debug(s"Retrieving the expected otp for $notificationId")
+    service.retrieveOtp(notificationId)
   }
 }

@@ -1,4 +1,5 @@
      # microservice specific routes
 
-POST     /notifications/sms                           uk.gov.hmrc.cipphonenumberstubs.controller.GovNotifyStubController.sms
-GET      /notifications/:notificationId               uk.gov.hmrc.cipphonenumberstubs.controller.GovNotifyStubController.status(notificationId: String)
+POST     /notifications/sms                       uk.gov.hmrc.cipphonenumberstubs.controller.GovNotifyStubController.sms
+GET      /notifications/:notificationId           uk.gov.hmrc.cipphonenumberstubs.controller.GovNotifyStubController.status(notificationId: String)
+GET      /otp/:notificationId                     uk.gov.hmrc.cipphonenumberstubs.controller.OtpController.retrieveOtp(notificationId: String)
