@@ -34,4 +34,49 @@ object VerificationResponses {
                                |  "uri": "https://api.notifications.service.gov.uk/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174"
                                |}""".stripMargin
 
+  val badRequestTeamOnlyError =       """[{
+                                         |"error": "BadRequestError",
+                                         |"message": "Can't send to this recipient using a team-only API key"
+                                         |}]""".stripMargin
+
+  val badRequestTrialModeOnlyError =  """[{
+                                         |"error": "BadRequestError",
+                                         |"message": "Can't send to this recipient when service is in trial mode - see https://www.notifications.service.gov.uk/trial-mode"
+                                         |}]""".stripMargin
+
+  val authErrorSystemClockError =     """[{
+                                         |"error": "AuthError",
+                                         |"message": "Error: Your system clock must be accurate to within 30 seconds"
+                                         |}]""".stripMargin
+
+  val authErrorInvalidTokenError =    """[{
+                                         |"error": "AuthError",
+                                         |"message": "Invalid token: API key not found"
+                                         |}]""".stripMargin
+
+  val rateLimitError =                """[{
+                                         |"error": "RateLimitError",
+                                         |"message": "Exceeded rate limit for key type TEAM/TEST/LIVE of 3000 requests per 60 seconds"
+                                         |}]""".stripMargin
+
+  val tooManyRequestsError =          """[{
+                                         |"error": "RateLimitError",
+                                         |"message": "Exceeded rate limit for key type TEAM/TEST/LIVE of 3000 requests per 60 seconds"
+                                         |}]""".stripMargin
+
+  val exception =                     """[{
+                                         |"error": "Exception",
+                                         |"message": "Internal server error"
+                                         |}]""".stripMargin
+
+  val validationError =               """[{
+                                         |"error": "ValidationError",
+                                         |"message": "id is not a valid UUID"
+                                         |}]""".stripMargin
+
+  val noResultFoundError =            """[{
+                                         |"error": "Exception",
+                                         |"message": "Internal server error"
+                                         |}]""".stripMargin
+
 }
