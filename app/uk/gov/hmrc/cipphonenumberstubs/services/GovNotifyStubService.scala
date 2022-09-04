@@ -19,20 +19,37 @@ package uk.gov.hmrc.cipphonenumberstubs.services
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.Result
-import play.api.mvc.Results.{Created, Ok}
+import play.api.mvc.Results.{BadRequest, Created, Forbidden, InternalServerError, NotFound, Ok, TooManyRequests}
+import uk.gov.hmrc.cipphonenumberstubs.config.AppConfig
 import uk.gov.hmrc.cipphonenumberstubs.services.responses.{NotificationResponse, VerificationResponses}
+
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton()
-class GovNotifyStubService @Inject() (implicit val executionContext: ExecutionContext) extends Logging {
+class GovNotifyStubService @Inject() (implicit val executionContext: ExecutionContext, config: AppConfig) extends Logging {
 
   def sms: Future[Result]  = Future {
-    Created(Json.parse(VerificationResponses.notificationResponse))
+    config.smsErrorCode match {
+      case "badRequestTeamOnlyError" => BadRequest(Json.parse(VerificationResponses.badRequestTeamOnlyError))
+      case "badRequestTrialModeOnlyError" => BadRequest(Json.parse(VerificationResponses.badRequestTrialModeOnlyError))
+      case "authErrorSystemClockError" => Forbidden(Json.parse(VerificationResponses.authErrorSystemClockError))
+      case "authErrorInvalidTokenError" => Forbidden(Json.parse(VerificationResponses.authErrorInvalidTokenError))
+      case "rateLimitError" => TooManyRequests(Json.parse(VerificationResponses.rateLimitError))
+      case "tooManyRequestsError" => TooManyRequests(Json.parse(VerificationResponses.tooManyRequestsError))
+      case "exception" => InternalServerError(Json.parse(VerificationResponses.exception))
+      case _ => Created(Json.parse(VerificationResponses.notificationResponse))
+    }
   }
 
   def status(notificationId: String): Future[Result] = Future {
-      Ok(Json.parse(parseNotificationResponse(notificationId)))
+    config.notificationErrorCode match {
+      case "validationError" => BadRequest(Json.parse(VerificationResponses.validationError))
+      case "authErrorInvalidTokenError" => Forbidden(Json.parse(VerificationResponses.authErrorInvalidTokenError))
+      case "authErrorSystemClockError" => Forbidden(Json.parse(VerificationResponses.authErrorSystemClockError))
+      case "noResultFoundError" => NotFound(Json.parse(VerificationResponses.noResultFoundError))
+      case _ => Ok(Json.parse(parseNotificationResponse(notificationId)))
+    }
   }
 
   def parseNotificationResponse(notificationId: String) = {

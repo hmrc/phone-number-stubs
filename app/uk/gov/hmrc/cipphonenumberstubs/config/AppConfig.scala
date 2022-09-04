@@ -22,5 +22,6 @@ import javax.inject.{Inject, Singleton}
 
 @Singleton
 class AppConfig @Inject()(config: Configuration) {
-
+  lazy val smsErrorCode: String = config.get[String]("govNotify.errorCode.sms")
+  lazy val notificationErrorCode: String = config.get[String]("govNotify.errorCode.notificationStatus")
 }
