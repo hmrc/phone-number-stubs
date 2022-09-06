@@ -273,17 +273,4 @@ object NotificationResponses {
       |  "type": "sms"
       |}
       |""".stripMargin
-
-  val notFound =
-    """
-      |{
-      |"errors": [
-      |        {
-      |            "error": "NoResultFound",
-      |            "message": "No result found"
-      |        }
-      |    ],
-      |    "status_code": 404
-      |}
-      |""".stripMargin
 }
