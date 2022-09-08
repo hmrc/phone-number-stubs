@@ -20,22 +20,22 @@ cip-phone-number-verification: 6083
 
 Sending passcode phone number Test cases
 ```
-      "+447430003001" => BadRequest
-      "+447430003002" => BadRequest
-      "+447430003003" => Forbidden
-      "+447430003004" => Forbidden
-      "+447430003005" => TooManyRequests
-      "+447430003006" => TooManyRequests
-      "+447430003007" => InternalServerError
+      "+447430003001" => BadRequest (badRequestTeamOnlyError)
+      "+447430003002" => BadRequest (badRequestTrialModeOnlyError)
+      "+447430003003" => Forbidden (authErrorSystemClockError)
+      "+447430003004" => Forbidden (authErrorInvalidTokenError)
+      "+447430003005" => TooManyRequests (rateLimitError)
+      "+447430003006" => TooManyRequests (tooManyRequestsError)
+      "+447430003007" => InternalServerError (exception)
       Any             => Created
 ```
 
 Notification Id Test cases 
 ```
-      "validation-d385-4b17-a0b4-23a85c0c5b1a" => BadRequest
-      "invalidtoken-d385-4b17-a0b4-23a85c0c5b1a" => Forbidden
-      "systemclock-d385-4b17-a0b4-23a85c0c5b1a" => Forbidden
-      "noresult-d385-4b17-a0b4-23a85c0c5b1a" => NotFound
+      "validation-d385-4b17-a0b4-23a85c0c5b1a" => BadRequest (validationError)
+      "invalidtoken-d385-4b17-a0b4-23a85c0c5b1a" => Forbidden (authErrorInvalidTokenError)
+      "systemclock-d385-4b17-a0b4-23a85c0c5b1a" => Forbidden (authErrorSystemClockErrorv)
+      "noresult-d385-4b17-a0b4-23a85c0c5b1a" => NotFound (noResultFoundError)
       
       "16770ea0-d385-4b17-a0b4-23a85c0c5b1a" => permanent_failure
       "26770ea0-d385-4b17-a0b4-23a85c0c5b1a" => technical_failure
