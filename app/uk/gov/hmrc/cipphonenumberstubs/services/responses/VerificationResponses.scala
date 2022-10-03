@@ -59,14 +59,14 @@ object VerificationResponses {
       |      "message": "Can't send to this recipient when service is in trial mode - see https://www.notifications.service.gov.uk/trial-mode"
       |    }
       |  ],
-      |  "status_code: 400
+      |  "status_code": 400
       |}
     """.stripMargin
 
   val authErrorSystemClockError =
     """
       |{
-      |  "errors: [
+      |  "errors": [
       |    {
       |      "error": "AuthError",
       |      "message": "Error: Your system clock must be accurate to within 30 seconds"
@@ -79,7 +79,7 @@ object VerificationResponses {
   val authErrorInvalidTokenError =
     """
       |{
-      |  "errors: [
+      |  "errors": [
       |    {
       |      "error": "AuthError",
       |      "message": "Invalid token: API key not found"
