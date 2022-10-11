@@ -107,8 +107,8 @@ object VerificationResponses {
       |{
       |  "errors": [
       |    {
-      |      "error": "RateLimitError",
-      |      "message": "Exceeded rate limit for key type TEAM/TEST/LIVE of 3000 requests per 60 seconds"
+      |      "error": "TooManyRequestsError",
+      |      "message": "Exceeded send limits (LIMIT NUMBER) for today"
       |    }
       |  ],
       |  "status_code": 429
