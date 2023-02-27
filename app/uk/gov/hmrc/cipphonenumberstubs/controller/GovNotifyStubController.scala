@@ -24,14 +24,17 @@ import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import javax.inject.{Inject, Singleton}
 
 @Singleton()
-class GovNotifyStubController @Inject()(cc: ControllerComponents, service: UserNotificationsStubService)
-  extends BackendController(cc) {
+class GovNotifyStubController @Inject() (
+    cc: ControllerComponents,
+    service: UserNotificationsStubService
+) extends BackendController(cc) {
 
   def sms: Action[JsValue] = Action(parse.json).async { implicit request =>
-      service.sms((request.body \ "phone_number").as[String])
+    service.sms((request.body \ "phone_number").as[String])
   }
 
-  def status(notificationId: String): Action[AnyContent] = Action.async { implicit request =>
-    service.status(notificationId)
+  def status(notificationId: String): Action[AnyContent] = Action.async {
+    implicit request =>
+      service.status(notificationId)
   }
 }
