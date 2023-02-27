@@ -2,5 +2,6 @@
 ->         /v2                         govUkNotify.Routes
 ->         /internal-auth              internalAuth.Routes
 ->         /                           health.Routes
+->         /notifications              notifications.Routes
 
 GET        /admin/metrics            com.kenshoo.play.metrics.MetricsController.metrics
