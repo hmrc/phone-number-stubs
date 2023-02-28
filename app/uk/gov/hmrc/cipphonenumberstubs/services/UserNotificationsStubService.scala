@@ -47,7 +47,10 @@ class UserNotificationsStubService @Inject() (implicit
       case "+447430003003" => Forbidden(Json.parse(""))
       case "+447430003005" => TooManyRequests(Json.parse(""))
       case "+447430003007" => InternalServerError(Json.parse(""))
-      case _               => Ok(Json.parse("""{ "deliveryStatus" : "SUCCESSFUL"}"""))
+      case _ =>
+        Ok(
+          Json.parse("""{ "status" : "SUCCESSFUL", message="SMS Delivered"}""")
+        )
     }
   }
 
