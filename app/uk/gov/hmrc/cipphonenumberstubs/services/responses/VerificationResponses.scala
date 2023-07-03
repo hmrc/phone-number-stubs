@@ -22,7 +22,7 @@ object VerificationResponses {
     """
       |{
       |  "content": {
-      |    "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is VWYMBQ.\nUse this code within 1 minutes to verify your telephone number.",
+      |    "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is VWYMBQ.\nUse this code within 1 minutes to verify your telephone number.",
       |    "from_number": "GOVUK"
       |  },
       |  "id": "ecf20f0a-86af-4ebf-9012-e48bc6a31174",

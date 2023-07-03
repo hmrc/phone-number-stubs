@@ -1,6 +1,6 @@
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
-val appName = "cip-phone-number-stubs"
+
+val appName = "phone-number-stubs"
 
 val silencerVersion = "1.7.7"
 
@@ -8,8 +8,9 @@ lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
   .settings(
     majorVersion := 0,
-    scalaVersion := "2.13.7",
+    scalaVersion := "2.13.8",
     libraryDependencies ++= AppDependencies.compile,
+    libraryDependencies ++= AppDependencies.test,
     // ***************
     // Use the silencer plugin to suppress warnings
     scalacOptions += "-P:silencer:pathFilters=routes",
@@ -22,5 +23,4 @@ lazy val microservice = Project(appName, file("."))
   .settings(
     PlayKeys.playDefaultPort := 6099
   )
-  .settings(publishingSettings: _*)
   .settings(resolvers += Resolver.jcenterRepo)

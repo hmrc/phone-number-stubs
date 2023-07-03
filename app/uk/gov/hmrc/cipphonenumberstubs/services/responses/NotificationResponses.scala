@@ -21,7 +21,7 @@ object NotificationResponses {
   val delivered =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -53,7 +53,7 @@ object NotificationResponses {
   val sending =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -85,7 +85,7 @@ object NotificationResponses {
   val created =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -117,7 +117,7 @@ object NotificationResponses {
   val pending =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -149,7 +149,7 @@ object NotificationResponses {
   val sent =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -181,7 +181,7 @@ object NotificationResponses {
   val permanentFailure =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -213,7 +213,7 @@ object NotificationResponses {
   val temporaryFailure =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,
@@ -245,7 +245,7 @@ object NotificationResponses {
   val technicalFailure =
     """
       |{
-      |  "body": "cip-phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
+      |  "body": "phone-service needs to verify your telephone number.\nYour telephone number verification code is HTNNQW.\nUse this code within 1 minutes to verify your telephone number.",
       |  "completed_at": "2022-07-18T05:44:16.623971Z",
       |  "created_at": "2022-07-18T05:44:16.472860Z",
       |  "created_by_name": null,

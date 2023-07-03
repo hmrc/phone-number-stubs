@@ -1,4 +1,4 @@
-# cip-phone-number-stubs
+# phone-number-stubs
 
 ### Summary
 
@@ -11,15 +11,15 @@ Backend stub to mock downstream services, currently the stub mocks the following
 - [InternalAuth](https://github.com/hmrc/internal-auth#token-authentication) - checks authentication token is valid
 
 
-The default port for cip-phone-number-stubs is 6099.
+The default port for phone-number-stubs is 6099.
 
 #### Default ports for related services
 
 ```
-cip-phone-number-frontend:     6080
-cip-phone-number:              6081
-cip-phone-number-validation:   6082
-cip-phone-number-verification: 6083
+phone-number-frontend:     6080
+phone-number:              6081
+phone-number-validation:   6082
+phone-number-verification: 6083
 ```
 
 ### Testing
@@ -70,22 +70,19 @@ Internal auth test cases
 
 Run the services against the current versions in dev, stop the CIP_PHONE_NUMBER_STUBS service and start manually
 
-    sm --stop CIP_PHONE_NUMBER_STUBS
-    cd cip-phone-number-stubs
+    sm --stop PHONE_NUMBER_STUBS
+    cd phone-number-stubs
     sbt run
 
 For reference here are the details for running each of the services individually
 
-    cd cip-phone-number-frontend
+    cd phone-number-frontend
     sbt run
  
-    cd cip-phone-number
+    cd phone-number
     sbt run
 
-    cd cip-phone-number-validation
-    sbt run
-
-    cd cip-phone-number-verification
+    cd phone-number-verification
     sbt run
 
 ### Curl microservice (for curl microservice build jobs)
@@ -100,7 +97,7 @@ curl \
   --request POST \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg' \
-  --data '{"phone_number":"07843274331","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-phone-service","passcode":"BTXDYC","timeToLive":"1"}}' \
+  --data '{"phone_number":"07843274331","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"phone-service","passcode":"BTXDYC","timeToLive":"1"}}' \
   'http://localhost:6099/v2/notifications/sms'
 ```
 
@@ -110,8 +107,8 @@ curl \
 -X POST 
     -H "Content-type: application/json"
     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
-    -d "{"phone_number":"07843274331","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-phone-service","passcode":"BTXDYC","timeToLive":"1"}}"    
-    'https://cip-phone-number-stubs.protected.mdtp/v2/notifications/sms'
+    -d "{"phone_number":"07843274331","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"phone-service","passcode":"BTXDYC","timeToLive":"1"}}"    
+    'https://phone-number-stubs.protected.mdtp/v2/notifications/sms'
 ```
 
 #### Check notification status
@@ -132,7 +129,7 @@ curl \
 -X GET 
     -H "Content-type: application/json"
     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
-    'https://cip-phone-number-stubs.protected.mdtp/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
+    'https://phone-number-stubs.protected.mdtp/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ``` 
 
 #### Check authentication token
@@ -153,7 +150,7 @@ curl \
 -X POST 
     -H "Content-type: application/json"
     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
-    'https://cip-phone-number-stubs.protected.mdtp/internal-auth/auth'
+    'https://phone-number-stubs.protected.mdtp/internal-auth/auth'
 ```
 
 ### License
