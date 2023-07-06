@@ -17,7 +17,7 @@
 package uk.gov.hmrc.cipphonenumberstubs.controller
 
 import play.api.libs.json.JsValue
-import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import play.api.mvc.{Action, ControllerComponents}
 import uk.gov.hmrc.cipphonenumberstubs.services.UserNotificationsStubService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -25,12 +25,13 @@ import javax.inject.{Inject, Singleton}
 
 @Singleton()
 class UserNotificationsStubController @Inject() (
-    cc: ControllerComponents,
-    service: UserNotificationsStubService
+  cc: ControllerComponents,
+  service: UserNotificationsStubService
 ) extends BackendController(cc) {
 
-  def sms: Action[JsValue] = Action(parse.json).async { implicit request =>
-    service.sms((request.body \ "phoneNumber").as[String])
+  def sms: Action[JsValue] = Action(parse.json).async {
+    implicit request =>
+      service.sms((request.body \ "phoneNumber").as[String])
   }
 
 }

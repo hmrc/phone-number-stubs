@@ -24,21 +24,21 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
 @Singleton()
-class InternalAuthStubController @Inject() (cc: ControllerComponents)
-    extends BackendController(cc) {
+class InternalAuthStubController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
 
-  def auth: Action[AnyContent] = Action.async { implicit request =>
-    request.headers.get(AUTHORIZATION) match {
-      case Some("invalid-token") =>
-        Future.successful(Unauthorized("Invalid token"))
-      case Some("invalid-permission") =>
-        Future.successful(Forbidden("Not authorized"))
-      case None                 => Future.successful(Unauthorized("No token"))
-      case Some(x) if x.isEmpty => Future.successful(Unauthorized("No token"))
-      case Some(_)              => Future.successful(Ok(Json.parse("""{
+  def auth: Action[AnyContent] = Action.async {
+    implicit request =>
+      request.headers.get(AUTHORIZATION) match {
+        case Some("invalid-token") =>
+          Future.successful(Unauthorized("Invalid token"))
+        case Some("invalid-permission") =>
+          Future.successful(Forbidden("Not authorized"))
+        case None                 => Future.successful(Unauthorized("No token"))
+        case Some(x) if x.isEmpty => Future.successful(Unauthorized("No token"))
+        case Some(_)              => Future.successful(Ok(Json.parse("""{
           |"retrievals": []
           |}
           |""".stripMargin)))
-    }
+      }
   }
 }

@@ -19,26 +19,15 @@ package uk.gov.hmrc.cipphonenumberstubs.services
 import play.api.Logging
 import play.api.libs.json.Json
 import play.api.mvc.Result
-import play.api.mvc.Results.{
-  BadRequest,
-  Created,
-  Forbidden,
-  InternalServerError,
-  NotFound,
-  Ok,
-  TooManyRequests
-}
-import uk.gov.hmrc.cipphonenumberstubs.services.responses.{
-  NotificationResponses,
-  VerificationResponses
-}
+import play.api.mvc.Results.{BadRequest, Created, Forbidden, InternalServerError, NotFound, Ok, TooManyRequests}
+import uk.gov.hmrc.cipphonenumberstubs.services.responses.{NotificationResponses, VerificationResponses}
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton()
 class UserNotificationsStubService @Inject() (implicit
-    val executionContext: ExecutionContext
+  val executionContext: ExecutionContext
 ) extends Logging {
 
   def sms(phoneNumber: String): Future[Result] = Future {
@@ -87,7 +76,7 @@ class UserNotificationsStubService @Inject() (implicit
     }
   }
 
-  def parseNotificationResponse(notificationId: String): String = {
+  def parseNotificationResponse(notificationId: String): String =
     notificationId match {
       case "16770ea0-d385-4b17-a0b4-23a85c0c5b1a" =>
         NotificationResponses.permanentFailure
@@ -104,5 +93,4 @@ class UserNotificationsStubService @Inject() (implicit
       case "76770ea0-d385-4b17-a0b4-23a85c0c5b1a" => NotificationResponses.sent
       case _                                      => NotificationResponses.delivered
     }
-  }
 }
