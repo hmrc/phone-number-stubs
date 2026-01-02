@@ -21,7 +21,7 @@ lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin)
   .settings(
     majorVersion := 0,
-    scalaVersion := "2.13.16",
+    scalaVersion := "2.13.18",
     libraryDependencies ++= AppDependencies.compile,
     libraryDependencies ++= AppDependencies.test,
     // ***************
